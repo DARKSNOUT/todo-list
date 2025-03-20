@@ -1,5 +1,6 @@
 package com.harsh.springboot.Firstproject.todo;
 
+import jakarta.validation.constraints.Size;
 
 public class Todo {
 	public Todo(int id, String username, String description, boolean done) {
@@ -12,6 +13,8 @@ public class Todo {
 	
 	private int id;
 	private String username;
+	
+	@Size(min=10, message="min at last 10 chars")
 	private String description;
 	private boolean done;
 	
