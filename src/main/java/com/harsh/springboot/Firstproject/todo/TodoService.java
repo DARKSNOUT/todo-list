@@ -1,5 +1,6 @@
 package com.harsh.springboot.Firstproject.todo;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
@@ -13,16 +14,16 @@ public class TodoService {
 	private static List<Todo> todos = new ArrayList<>();
 	private static int count=0;
 	static {
-		todos.add(new Todo(count++, "a", "Learn AWS", false ));
-		todos.add(new Todo(count++, "a", "Learn DevOps", false ));
-		todos.add(new Todo(count++, "a", "Learn Full Stack Development", false ));
+		todos.add(new Todo(count++, "a", "Learn AWS", LocalDate.now().plusYears(1), false ));
+		todos.add(new Todo(count++, "a", "Learn DevOps", LocalDate.now().plusYears(2), false ));
+		todos.add(new Todo(count++, "a", "Learn Full Stack Development", LocalDate.now().plusYears(1), false ));
 	}
 	
 	public List<Todo> findbyusername(String username){
 		return todos;
 	}
-	public void addtodo(String username,String description,boolean done) {
-		Todo todo=new Todo(count++,username,description,done);
+	public void addtodo(String username,String description,LocalDate targetdate, boolean done) {
+		Todo todo=new Todo(count++,username,description,targetdate,done);
 		todos.add(todo);
 	}
 	public void deleteById(int id) {
@@ -41,4 +42,6 @@ public class TodoService {
 		deleteById(todo.getId());
 		todos.add(todo);
 	}
+	
+	
 }

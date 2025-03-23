@@ -1,14 +1,17 @@
 package com.harsh.springboot.Firstproject.todo;
 
+import java.time.LocalDate;
+
 import jakarta.validation.constraints.Size;
 
 public class Todo {
-	public Todo(int id, String username, String description, boolean done) {
+	public Todo(int id, String username, String description, LocalDate targetDate , boolean done) {
 		super();
 		this.id = id;
 		this.username = username;
 		this.description = description;
 		this.done = done;
+		this.targetDate=targetDate;
 	}
 	
 	private int id;
@@ -17,6 +20,7 @@ public class Todo {
 	@Size(min=10, message="min at last 10 chars")
 	private String description;
 	private boolean done;
+	private LocalDate targetDate;
 	
 	public int getId() {
 		return id;
@@ -50,9 +54,19 @@ public class Todo {
 		this.done = done;
 	}
 	
+
+	public LocalDate getTargetDate() {
+		return targetDate;
+	}
+
+	public void setTargetdate(LocalDate targetDate) {
+		this.targetDate = targetDate;
+	}
+
 	@Override
 	public String toString() {
-		return "Todo [id=" + id + ", username=" + username + ", description=" + description + ", done=" + done + "]";
+		return "Todo [id=" + id + ", username=" + username + ", description=" + description + ", done=" + done
+				+ ", targetdate=" + targetDate + "]";
 	}
 	
 	

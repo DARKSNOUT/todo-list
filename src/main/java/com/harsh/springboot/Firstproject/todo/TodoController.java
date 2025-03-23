@@ -1,5 +1,6 @@
 package com.harsh.springboot.Firstproject.todo;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -34,7 +35,7 @@ public class TodoController {
 	@RequestMapping(value="add-todo", method = RequestMethod.GET)
 	public String getvalue(ModelMap model) {
 		String username= (String) model.get("name");
-		Todo todo=new Todo(0,username,"Default Desc",false);
+		Todo todo=new Todo(0,username,"Default Desc",LocalDate.now().plusYears(1),false);
 		model.put("todo", todo);
 		return "new_todo";
 	}
@@ -44,7 +45,7 @@ public class TodoController {
 			return "new_todo";
 		}
 		String username= (String) model.get("name");
-		todoService.addtodo(username, todos.getDescription(), true);
+		todoService.addtodo(username, todos.getDescription(), todos.getTargetDate(), true);
 		return "redirect:list-todo";
 	}
 	@RequestMapping("delete-todo")
@@ -65,7 +66,7 @@ public class TodoController {
 	public String updateTodo(ModelMap model, @Valid Todo todo, BindingResult result) {
 		
 		if(result.hasErrors()) {
-			return "todo";
+			return "new_todo";
 		}
 		
 		String username = (String)model.get("name");
