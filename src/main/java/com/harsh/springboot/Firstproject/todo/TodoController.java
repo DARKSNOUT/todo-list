@@ -24,7 +24,6 @@ public class TodoController {
 	
 	private TodoService todoService;
 	
-	
 	@RequestMapping("list-todo")
 	public String listAllTodos(ModelMap model) {
 		List<Todo> todos = todoService.findbyusername("in28minutes");
@@ -39,6 +38,7 @@ public class TodoController {
 		model.put("todo", todo);
 		return "new_todo";
 	}
+	
 	@RequestMapping(value="add-todo", method = RequestMethod.POST)
 	public String getnewvalue(ModelMap model,@Valid Todo todos,BindingResult result) {
 		if(result.hasErrors()) {
@@ -48,6 +48,7 @@ public class TodoController {
 		todoService.addtodo(username, todos.getDescription(), todos.getTargetDate(), true);
 		return "redirect:list-todo";
 	}
+	
 	@RequestMapping("delete-todo")
 	public String deleteTodo(@RequestParam int id) {
 		//Delete todo
@@ -74,5 +75,4 @@ public class TodoController {
 		todoService.updateTodo(todo);
 		return "redirect:list-todo";
 	}
-	
 }

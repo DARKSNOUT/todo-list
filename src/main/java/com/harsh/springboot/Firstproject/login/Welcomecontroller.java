@@ -4,13 +4,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+// import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 @Controller
 @SessionAttributes("name")
-public class logincontroller {
+public class Welcomecontroller {
+	// removed the old authnetication meathod and added security dependendcy meathod 
 	
+	/*
 	private AuthenticationService authenticationservice;
 
 	public logincontroller(AuthenticationService authenticationservice) {
@@ -33,6 +35,13 @@ public class logincontroller {
 			
 			model.put("errormessage","Invalid Credintials ,please tr again");
 			return "login";
-	}
+	}*/
 	
+	//directly locating to the welcome page
+	
+	@RequestMapping(value="/",method=RequestMethod.GET)
+	public String GotoWelcomePage(ModelMap model) {
+		model.put("name","harsh");
+		return "welcome";
+	}
 }
